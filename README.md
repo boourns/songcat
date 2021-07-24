@@ -14,7 +14,7 @@ A second tool, `split.rb`, accepts a sysex file that contains many songs, and wr
 ```bash
 ruby songcat.rb <output.syx> <song-1.syx> <song-2.syx>
 ```
-This will merge song-1.syx and song-2.syx into a new, longer song, and write it to output.syx.  Relative jumps are rewritten to match the new row numbers.
+This will merge `song-1.syx` and `song-2.syx` into a new, longer song, and write it to `output.syx`.  Relative jumps are rewritten to match the new row numbers.
 
 ```bash
 ruby split.rb <input.syx>
