@@ -66,6 +66,7 @@ class Song
 
 		len = sysex.length - 7
 		sysex += [len>>7, len&0x7F]
+		sysex.append(0xf7)
 
 		sysex
 	end
