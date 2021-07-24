@@ -18,17 +18,16 @@ class SongJoiner
 		song.rows.each do |orig|
 			row = Array.new(orig)
 
-			puts "Row: #{row}"
 			if row[0] == 254
-				puts "Looks like a jump to row #{row[3]}"
-				puts "Adjusting to row #{row[3] + offset}"
+				#puts "Looks like a jump to row #{row[3]}"
+				#puts "Adjusting to row #{row[3] + offset}"
 				row[3] += offset
 				if row[3] > MAX_SONG_LENGTH
 					raise "Jump past end of song!"
 				end
 			end
 			if row[0] == 255 && !final
-				puts "skipping 'halt', not last song"
+				#puts "skipping 'halt', not last song"
 			else
 				@output.rows.append(row)
 			end

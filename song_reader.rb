@@ -50,7 +50,6 @@ class SongReader
 		rows = []
 		done = false
 		checksum = originalPosition + songName.sum
-		puts "reading, post name checksum #{checksum}"
 
 		while (!done)
 			raw = bytes.slice(i, 12)
@@ -64,11 +63,8 @@ class SongReader
 			i += 12
 		end
 
-		puts "read a total of #{rows.length} rows"
-
 		# TODO: read checksum
 		fileChecksum = (bytes[i] << 7) + bytes[i+1]
-		puts "Calculated checksum #{checksum & 0x3fff}, read file checksum #{fileChecksum}"
 		i += 2
 
 		if (checksum & 0x3fff) != fileChecksum
@@ -76,7 +72,6 @@ class SongReader
 		end
 
 		length = (bytes[i] << 7) + bytes[i+1]
-		puts "Calculated length #{i-start-7}, read length #{length}"
 		if (i-start-7 != length) 
 			raise "Incorrect song length calculated"
 		end

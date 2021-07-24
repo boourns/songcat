@@ -16,6 +16,21 @@ class Song
 		@rows = rows
 	end
 
+	def songString
+		cleaned = []
+		finished = false
+		@name.each do |c|
+			if c == 0
+				finished = true
+			end
+			if !finished
+				cleaned.append(c)
+			end
+		end
+
+		cleaned.pack("C*")
+	end
+
 	def render
 		if (@name.length != 16 || @name.class != Array)
 			raise "@name should be array of length 16"
@@ -47,9 +62,6 @@ class Song
 		end
 
 		checksum = checksum & 0x3fff
-
-		puts "trying to write checksum #{checksum}"
-
 		sysex += [(checksum>>7) & 0x7F, checksum&0x7F]
 
 		len = sysex.length - 7
